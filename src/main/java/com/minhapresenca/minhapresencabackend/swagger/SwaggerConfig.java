@@ -1,12 +1,9 @@
-package com.minhapresenca.minhapresencabackend;
-
+package com.minhapresenca.minhapresencabackend.swagger;
 
 import java.util.Arrays;
 import java.util.HashSet;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -42,16 +39,13 @@ public class SwaggerConfig {
     @Bean
     public Docket detailAPi() {
         Docket docket = new Docket(DocumentationType.SWAGGER_2);
-
-        docket
-                .select()
+        docket.select()
                 .apis(RequestHandlerSelectors.basePackage("com.minhapresenca.minhapresencabackend.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(this.informationApi().build())
                 .consumes(new HashSet<String>(Arrays.asList("application/json")))
                 .produces(new HashSet<String>(Arrays.asList("application/json")));
-
         return docket;
     }
 }
