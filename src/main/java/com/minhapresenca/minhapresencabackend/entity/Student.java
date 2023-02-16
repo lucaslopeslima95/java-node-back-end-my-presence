@@ -34,7 +34,7 @@ public class Student {
 
   @OneToMany(mappedBy = "student", cascade = CascadeType.REMOVE , fetch = FetchType.LAZY)
   @JsonIgnore
-  private List<Presence> presences;
+  private List<Presence> presences = new ArrayList<>();;
 
   @ManyToOne
   @JoinColumn(name = "Student")

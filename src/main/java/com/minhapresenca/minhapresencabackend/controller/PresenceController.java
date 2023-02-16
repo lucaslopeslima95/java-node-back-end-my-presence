@@ -10,31 +10,31 @@ import java.util.List;
 @RestController
 @RequestMapping("/presence")
 public class PresenceController {
-  private final StudentServiceImpl alunoService;
+  private final StudentServiceImpl studentService;
 
-  public PresenceController(StudentServiceImpl alunoService) {
-    this.alunoService = alunoService;
+  public PresenceController(StudentServiceImpl studentService) {
+    this.studentService = studentService;
   }
 
   @PostMapping
   public Student save(@RequestBody Student student) {
-    return alunoService.create(student);
+    return studentService.create(student);
   }
 
   @GetMapping
   public List<Student> getAll(){
-    return alunoService.getAll();
+    return studentService.getAll();
   }
 
-  @DeleteMapping(path ={"/{id}"})
-  public String delete(@PathVariable Long id){
-    alunoService.delete(id);
+  @DeleteMapping
+  public String delete(@RequestBody Long id){
+    studentService.delete(id);
     return "Deletado com Sucesso";
   }
 
   @PutMapping(path ={"/{id}"})
   public Student update(@RequestBody Student student, @PathVariable Long id) {
-  return alunoService.update(id, student);
+  return studentService.update(id, student);
   }
 
 

@@ -1,4 +1,5 @@
-package com.minhapresenca.minhapresencabackend.swagger;
+package com.minhapresenca.minhapresencabackend;
+
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -17,7 +18,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
-    private Contact contato() {
+    private Contact contact() {
         return new Contact(
                 "Lucas Lopes",
                 "http://www.seusite.com.br",
@@ -28,26 +29,28 @@ public class SwaggerConfig {
         ApiInfoBuilder apiInfoBuilder = new ApiInfoBuilder();
 
         apiInfoBuilder.title("Title - Rest API");
-        apiInfoBuilder.description("Api para gestão de Academia");
+        apiInfoBuilder.description("Api para gestão de presença escolar");
         apiInfoBuilder.version("1.0");
         apiInfoBuilder.termsOfServiceUrl("Termo de uso: Open Source");
         apiInfoBuilder.license("Licença - Sua Empresa");
         apiInfoBuilder.licenseUrl("http://www.seusite.com.br");
-        apiInfoBuilder.contact(this.contato());
+        apiInfoBuilder.contact(this.contact());
 
         return apiInfoBuilder;
 
     }
     @Bean
-    public Docket detailsApi() {
+    public Docket detailAPi() {
         Docket docket = new Docket(DocumentationType.SWAGGER_2);
 
         docket
                 .select()
-                .apis(RequestHandlerSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("com.minhapresenca.minhapresencabackend.controller"))
                 .paths(PathSelectors.any())
-                .build();
-
+                .build()
+                .apiInfo(this.informationApi().build())
+                .consumes(new HashSet<String>(Arrays.asList("application/json")))
+                .produces(new HashSet<String>(Arrays.asList("application/json")));
 
         return docket;
     }
