@@ -6,14 +6,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+
 public class AlunoUpdateForm {
 
-  private String nome;
-
-  private String bairro;
-
-  private LocalDate dataDeNascimento;
 }

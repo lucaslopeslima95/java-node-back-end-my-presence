@@ -1,12 +1,14 @@
 package com.minhapresenca.minhapresencabackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Data
@@ -15,23 +17,27 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "tb_alunos")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Aluno {
+public class Student {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  private String nome;
+  private String name;
 
   @Column(unique = true)
   private String cpf;
 
-  private String bairro;
+  private String neighborhood;
 
-  private LocalDate dataDeNascimento;
+  private String address;
 
-//  @OneToMany(mappedBy = "aluno", cascade = CascadeType.REMOVE , fetch = FetchType.LAZY)
-//  @JsonIgnore
-//  private List<AvaliacaoFisica> avaliacoes = new ArrayList<>();
+  @OneToMany(mappedBy = "student", cascade = CascadeType.REMOVE , fetch = FetchType.LAZY)
+  @JsonIgnore
+  private List<Presence> presences;
+
+  @ManyToOne
+  @JoinColumn(name = "Student")
+  private Class aClass;
 
 }
