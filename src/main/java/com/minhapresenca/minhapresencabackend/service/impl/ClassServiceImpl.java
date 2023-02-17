@@ -2,7 +2,7 @@ package com.minhapresenca.minhapresencabackend.service.impl;
 
 
 import com.minhapresenca.minhapresencabackend.entity.Class;
-import com.minhapresenca.minhapresencabackend.entity.Student;
+import com.minhapresenca.minhapresencabackend.entity.form.ClassForm;
 import com.minhapresenca.minhapresencabackend.repository.ClassRepository;
 import com.minhapresenca.minhapresencabackend.service.ClassService;
 import org.springframework.stereotype.Service;
@@ -15,10 +15,16 @@ public class ClassServiceImpl implements ClassService {
 
   private ClassRepository classRepository;
 
+  public ClassServiceImpl(ClassRepository classRepository) {
+    this.classRepository = classRepository;
+  }
+
 
   @Override
-  public Class create(Class aClass) {
-    return classRepository.save(aClass);
+  public Class create(ClassForm aClass) {
+    Class aClassNew = new Class();
+    aClassNew.setClassName(aClass.getClassName());
+    return classRepository.save(aClassNew);
   }
 
   @Override

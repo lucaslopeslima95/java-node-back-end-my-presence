@@ -3,6 +3,7 @@ package com.minhapresenca.minhapresencabackend.controller;
 
 import com.minhapresenca.minhapresencabackend.entity.Class;
 import com.minhapresenca.minhapresencabackend.entity.Student;
+import com.minhapresenca.minhapresencabackend.entity.form.ClassForm;
 import com.minhapresenca.minhapresencabackend.service.impl.ClassServiceImpl;
 import com.minhapresenca.minhapresencabackend.service.impl.StudentServiceImpl;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class ClassController {
   }
 
   @PostMapping
-  public Class save(@RequestBody Class classStudent) {
+  public Class save(@RequestBody ClassForm classStudent) {
     return classService.create(classStudent);
   }
 
