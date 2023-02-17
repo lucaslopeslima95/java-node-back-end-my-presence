@@ -22,8 +22,7 @@ public class StudentForm {
     private String neighborhood;
 
     private String address;
+
 //  @NotEmpty(message = "Preencha o campo corretamente.")
 //  @Size(min = 3, max =50, message = "'${validatedValue}' precisa estar entre {min} e {max} caracteres.")
-
-
 }
