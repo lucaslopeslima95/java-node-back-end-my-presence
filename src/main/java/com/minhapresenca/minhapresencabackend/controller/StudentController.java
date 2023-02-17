@@ -2,6 +2,7 @@ package com.minhapresenca.minhapresencabackend.controller;
 
 
 import com.minhapresenca.minhapresencabackend.entity.Student;
+import com.minhapresenca.minhapresencabackend.entity.form.StudentForm;
 import com.minhapresenca.minhapresencabackend.service.impl.StudentServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,8 +18,8 @@ public class StudentController {
   }
 
   @PostMapping
-  public Student save(@RequestBody Student student) {
-    return alunoService.create(student);
+  public Student save(@RequestBody StudentForm studentForm) {
+    return alunoService.create(studentForm);
   }
 
   @GetMapping

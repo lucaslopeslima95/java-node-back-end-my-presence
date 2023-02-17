@@ -1,6 +1,7 @@
 package com.minhapresenca.minhapresencabackend.service.impl;
 
 import com.minhapresenca.minhapresencabackend.entity.Student;
+import com.minhapresenca.minhapresencabackend.entity.form.StudentForm;
 import com.minhapresenca.minhapresencabackend.repository.StudentRepository;
 import com.minhapresenca.minhapresencabackend.service.StudentService;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ public class StudentServiceImpl implements StudentService {
   public StudentServiceImpl(StudentRepository repository) {
     this.repository = repository;
   }
-  public Student create(Student form) {
+  public Student create(StudentForm form) {
     Student student = new Student();
     student.setName(form.getName());
     student.setCpf(form.getCpf());

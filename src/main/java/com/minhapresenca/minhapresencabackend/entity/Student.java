@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "tb_alunos")
+@Table(name = "student")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Student {
 
@@ -34,10 +34,10 @@ public class Student {
 
   @OneToMany(mappedBy = "student", cascade = CascadeType.REMOVE , fetch = FetchType.LAZY)
   @JsonIgnore
-  private List<Presence> presences;
+  private List<Presence> presences = new ArrayList<>();;
 
   @ManyToOne
-  @JoinColumn(name = "Student")
+  @JoinColumn(name = "class_id")
   private Class aClass;
 
 }
