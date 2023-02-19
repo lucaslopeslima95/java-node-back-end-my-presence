@@ -16,8 +16,8 @@ public class PresenceController {
     this.presenceService = presenceService;
   }
   @PostMapping
-  public Presence save(@RequestBody Presence presence) {
-    return presenceService.create(presence);
+  public Presence save(@RequestBody Long  id) {
+    return presenceService.create(id);
   }
 
   @GetMapping

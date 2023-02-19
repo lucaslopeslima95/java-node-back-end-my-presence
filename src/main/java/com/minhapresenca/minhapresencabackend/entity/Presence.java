@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,5 +19,7 @@ public class Presence {
     @ManyToOne
     @JoinColumn(name = "student")
     private Student student;
-    private LocalDateTime date = LocalDateTime.now();
+    private LocalDateTime date;
+
+
 }

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface PresenceService {
 
-  Presence create(Presence presence);
+  Presence create(Long id);
 
   List<Presence> getAll();
 
