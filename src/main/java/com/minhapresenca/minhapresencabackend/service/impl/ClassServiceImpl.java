@@ -19,7 +19,6 @@ public class ClassServiceImpl implements ClassService {
     this.classRepository = classRepository;
   }
 
-
   @Override
   public Class create(ClassForm aClass) {
     Class aClassNew = new Class();
@@ -42,6 +41,6 @@ public class ClassServiceImpl implements ClassService {
 
   @Override
   public void delete(Long id) {
-
+      classRepository.deleteById(id);
   }
 }
