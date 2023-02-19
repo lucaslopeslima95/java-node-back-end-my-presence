@@ -1,9 +1,8 @@
 package com.minhapresenca.minhapresencabackend.controller;
 
 
-import com.minhapresenca.minhapresencabackend.entity.Student;
-import com.minhapresenca.minhapresencabackend.entity.form.StudentForm;
-import com.minhapresenca.minhapresencabackend.service.impl.StudentServiceImpl;
+import com.minhapresenca.minhapresencabackend.entity.Presence;
+import com.minhapresenca.minhapresencabackend.service.impl.PresenceServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,32 +10,29 @@ import java.util.List;
 @RestController
 @RequestMapping("/presence")
 public class PresenceController {
-  private final StudentServiceImpl studentService;
+  private final PresenceServiceImpl presenceService;
 
-  public PresenceController(StudentServiceImpl studentService) {
-    this.studentService = studentService;
+  public PresenceController(PresenceServiceImpl presenceService) {
+    this.presenceService = presenceService;
   }
-
   @PostMapping
-  public Student save(@RequestBody StudentForm student) {
-    return studentService.create(student);
+  public Presence save(@RequestBody Presence presence) {
+    return presenceService.create(presence);
   }
 
   @GetMapping
-  public List<Student> getAll(){
-    return studentService.getAll();
+  public List<Presence> getAll(){
+    return presenceService.getAll();
   }
 
   @DeleteMapping
   public String delete(@RequestBody Long id){
-    studentService.delete(id);
+    presenceService.delete(id);
     return "Deletado com Sucesso";
   }
 
   @PutMapping(path ={"/{id}"})
-  public Student update(@RequestBody Student student, @PathVariable Long id) {
-  return studentService.update(id, student);
+  public Presence update(@RequestBody Presence presence, @PathVariable Long id) {
+  return presenceService.update(id, presence);
   }
-
-
 }
