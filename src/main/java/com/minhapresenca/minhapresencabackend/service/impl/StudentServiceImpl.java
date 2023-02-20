@@ -11,13 +11,12 @@ import java.util.List;
 @Service
 public class StudentServiceImpl implements StudentService {
 
-
   private StudentRepository repository;
 
   public StudentServiceImpl(StudentRepository repository) {
     this.repository = repository;
   }
-  public Student create(StudentForm form) {
+  public Student save(StudentForm form) {
     Student student = new Student();
     student.setName(form.getName());
     student.setCpf(form.getCpf());

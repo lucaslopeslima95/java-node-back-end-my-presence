@@ -3,9 +3,11 @@ package com.minhapresenca.minhapresencabackend.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.ZonedDateTime;
 
 @Data
 @NoArgsConstructor
@@ -19,7 +21,6 @@ public class Presence {
     @ManyToOne
     @JoinColumn(name = "student")
     private Student student;
-    private LocalDateTime date;
-
+    private String date = String.valueOf(ZonedDateTime.now());
 
 }

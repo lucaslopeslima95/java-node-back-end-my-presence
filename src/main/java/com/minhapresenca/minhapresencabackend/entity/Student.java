@@ -17,8 +17,7 @@ import java.util.List;
 @Entity
 @Table(name = "student")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Student {
-
+public class Student extends User{
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;

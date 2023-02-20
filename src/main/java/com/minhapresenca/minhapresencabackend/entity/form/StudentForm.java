@@ -10,10 +10,6 @@ import javax.persistence.Id;
 @Data
 public class StudentForm {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     private String name;
 
     @Column(unique = true)

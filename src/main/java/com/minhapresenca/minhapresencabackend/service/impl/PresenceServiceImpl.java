@@ -9,8 +9,10 @@ import com.minhapresenca.minhapresencabackend.service.StudentService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class PresenceServiceImpl implements PresenceService {
@@ -26,13 +28,20 @@ public class PresenceServiceImpl implements PresenceService {
   public Presence create(Long id) {
     Presence presence = new Presence();
     presence.setStudent(studentRepository.findById(id).get());
-    presence.setDate(formatData());
     return presenceRepository.save(presence);
   }
-
   @Override
   public List<Presence> getAll() {
-    return presenceRepository.findAll();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+    List<Presence> presences = presenceRepository.findAll();
+    for (Presence presence : presences) {
+      ZonedDateTime date = ZonedDateTime.parse(presence.getDate());
+      if (date != null) {
+        String formattedDate = date.format(formatter);
+        presence.setDate(formattedDate);
+      }
+    }
+    return presences;
   }
 
   @Override
@@ -47,11 +56,5 @@ public class PresenceServiceImpl implements PresenceService {
         presence.setDate(presenceUp.getDate());
     return presenceRepository.saveAndFlush(presence);
   }
-  public LocalDateTime formatData(){
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-    LocalDateTime dateUnformatted = LocalDateTime.now();
-    String formattedDate = dateUnformatted.format(formatter);
-    LocalDateTime parsedDate = LocalDateTime.parse(formattedDate, formatter);
-    return parsedDate;
-  }
+
 }
