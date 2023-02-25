@@ -15,5 +15,5 @@ public class Log {
     private String nameStudent;
     private String operation;
     private String whoDo;
-    private String createdAt = String.valueOf(ZonedDateTime.now());
+    private String createdAt;
 }

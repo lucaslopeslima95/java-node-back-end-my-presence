@@ -23,7 +23,7 @@ public class StudentController {
 
   @PostMapping
   public Student save(@RequestBody StudentForm studentForm) {
-    logService.saveLog(studentForm.getName(), "Usuario","Create Student");
+    logService.saveLogToServer(studentForm.getName(), "Usuario","Create Student");
     return studentService.save(studentForm);
   }
 
