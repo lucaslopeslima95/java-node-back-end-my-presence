@@ -14,11 +14,11 @@ import java.util.List;
 @Builder
 public class StudentServiceImpl implements StudentService {
 
-  private StudentRepository repository;
+  private StudentRepository studentRepository;
   private ClassRepository classRepository;
 
-  public StudentServiceImpl(StudentRepository repository) {
-    this.repository = repository;
+  public StudentServiceImpl(StudentRepository studentRepository) {
+    this.studentRepository = studentRepository;
   }
   public Student save(StudentDTO studentDTO) {
     Student student = Student
@@ -29,24 +29,24 @@ public class StudentServiceImpl implements StudentService {
             .neighborhood(studentDTO.neighborhood())
             .aClass(classRepository.findById(studentDTO.idClass()).get())
             .build();
-    return repository.save(student);
+    return studentRepository.save(student);
   }
 
   public List<Student> getAll() {
-    return repository.findAll();
+    return studentRepository.findAll();
   }
 
   @Override
   public Student update(Long id, Student studentUp) {
-    Student student = repository.findById(id).get();
+    Student student = studentRepository.findById(id).get();
     student.setName(studentUp.getName());
     student.setNeighborhood(studentUp.getNeighborhood());
-    return repository.saveAndFlush(student);
+    return studentRepository.saveAndFlush(student);
   }
 
   @Override
   public void delete(Long id) {
-    repository.deleteById(id);
+    studentRepository.deleteById(id);
   }
 
 }

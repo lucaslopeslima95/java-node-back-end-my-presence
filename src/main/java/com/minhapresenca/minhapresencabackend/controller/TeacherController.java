@@ -18,11 +18,8 @@ import java.util.NoSuchElementException;
 @CrossOrigin(origins = "*")
 public class TeacherController {
   private final TeacherServiceImpl teacherService;
-  private final UserServiceImpl userService;
-
   public TeacherController(TeacherServiceImpl teacherService, UserServiceImpl userService) {
     this.teacherService = teacherService;
-    this.userService = userService;
   }
 
   @PostMapping
@@ -42,14 +39,7 @@ public class TeacherController {
 
   @PutMapping(path ={"/{id}"})
   public ResponseEntity<Teacher> update(@RequestBody TeacherDTO teacherDTO, @PathVariable Long id) {
-    try {
-      Teacher updatedTeacher = teacherService.update(id, teacherDTO);
-      return ResponseEntity.ok(updatedTeacher);
-    } catch (NoSuchElementException e) {
-      return ResponseEntity.notFound().build();
-    } catch (Exception e) {
-      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-    }
+    return  new ResponseEntity<>(teacherService.update(id, teacherDTO), HttpStatus.ACCEPTED);
   }
 
 }
