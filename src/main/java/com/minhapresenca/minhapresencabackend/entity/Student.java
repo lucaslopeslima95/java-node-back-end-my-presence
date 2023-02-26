@@ -23,6 +23,7 @@ public class Student{
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private long id_Student;
   private String name;
 
   @Column(unique = true)
@@ -32,7 +33,7 @@ public class Student{
 
   private String address;
 
-  @OneToMany(mappedBy = "student_id", cascade = CascadeType.REMOVE , fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "student", cascade = CascadeType.REMOVE , fetch = FetchType.LAZY)
   @JsonIgnore
   private List<Presence> presences;
 
@@ -43,6 +44,4 @@ public class Student{
   @ManyToOne
   @JoinColumn(name = "user_id")
   private User user;
-
-
 }

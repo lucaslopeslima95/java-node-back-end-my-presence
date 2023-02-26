@@ -16,6 +16,7 @@ import java.util.Set;
 public class Teacher{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id_teacher;
     private String name;
     private String subject;
 
@@ -24,9 +25,9 @@ public class Teacher{
     private User user;
 
     @ManyToMany
-    @JoinTable(name = "Class_Teacher",
-            joinColumns = @JoinColumn(name = "student_id"),
-            inverseJoinColumns = @JoinColumn(name = "subject_id"))
-    private Set<Class> aClass;
+    @JoinTable(name = "class_teacher",
+            joinColumns = @JoinColumn(name = "id_class"),
+            inverseJoinColumns = @JoinColumn(name = "id_teacher"))
+    private Set<Class> classList;
 
 }

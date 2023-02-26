@@ -19,9 +19,9 @@ import java.time.ZonedDateTime;
 public class Presence {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id_presence;
     @ManyToOne
-    @JoinColumn(name = "student")
+    @JoinColumn(name = "presences")
     private Student student;
     private String date;
 

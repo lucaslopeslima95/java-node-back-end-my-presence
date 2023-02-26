@@ -21,8 +21,8 @@ public class ClassServiceImpl implements ClassService {
 
   @Override
   public Class create(ClassDTO aClass) {
-    Class aClassNew = new Class();
-    aClassNew.setClassName(aClass.getClassName());
+    Class aClassNew = Class.builder()
+            .className(aClass.className()).build();
     return classRepository.save(aClassNew);
   }
 
