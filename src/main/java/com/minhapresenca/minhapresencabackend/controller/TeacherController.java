@@ -5,6 +5,7 @@ import com.minhapresenca.minhapresencabackend.DTO.TeacherDTO;
 import com.minhapresenca.minhapresencabackend.entity.Teacher;
 import com.minhapresenca.minhapresencabackend.servicesImplementations.TeacherServiceImpl;
 import com.minhapresenca.minhapresencabackend.servicesImplementations.UserServiceImpl;
+import org.hibernate.annotations.ManyToAny;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,5 +42,4 @@ public class TeacherController {
   public ResponseEntity<Teacher> update(@RequestBody TeacherDTO teacherDTO, @PathVariable Long id) {
     return  new ResponseEntity<>(teacherService.update(id, teacherDTO), HttpStatus.ACCEPTED);
   }
-
 }

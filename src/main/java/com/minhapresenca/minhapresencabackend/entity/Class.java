@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Bean;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,4 +25,7 @@ public class Class {
     private String className;
     @OneToMany(mappedBy = "aClass", cascade = CascadeType.REMOVE , fetch = FetchType.LAZY)
     private List <Student> studentList;
+
+    @ManyToMany(mappedBy = "Class_Teacher")
+    private Set<Teacher> teachers;
 }

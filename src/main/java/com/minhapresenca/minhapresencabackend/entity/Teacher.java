@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -21,5 +22,11 @@ public class Teacher{
     @ManyToOne
     @JoinColumn(name = "id_user")
     private User user;
+
+    @ManyToMany
+    @JoinTable(name = "Class_Teacher",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "subject_id"))
+    private Set<Class> aClass;
 
 }

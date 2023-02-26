@@ -1,17 +1,6 @@
 package com.minhapresenca.minhapresencabackend.DTO;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import javax.persistence.*;
 
+import lombok.Builder;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class ClassDTO {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String className;
-
-}
+@Builder
+public record ClassDTO(String className){}
