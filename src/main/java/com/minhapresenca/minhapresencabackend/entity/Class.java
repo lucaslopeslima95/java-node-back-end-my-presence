@@ -2,6 +2,7 @@ package com.minhapresenca.minhapresencabackend.entity;
 
 import com.minhapresenca.minhapresencabackend.entity.Student;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "class")
+@Builder
 public class Class {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

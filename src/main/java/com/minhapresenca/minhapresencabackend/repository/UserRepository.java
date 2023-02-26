@@ -1,9 +1,10 @@
 package com.minhapresenca.minhapresencabackend.repository;
 
 
-import com.minhapresenca.minhapresencabackend.entity.Student;
+import com.minhapresenca.minhapresencabackend.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface StudentRepository extends JpaRepository<Student, Long> {}
+public interface UserRepository extends JpaRepository<User, Long> {
+}

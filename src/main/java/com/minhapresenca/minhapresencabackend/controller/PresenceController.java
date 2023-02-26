@@ -2,13 +2,14 @@ package com.minhapresenca.minhapresencabackend.controller;
 
 
 import com.minhapresenca.minhapresencabackend.entity.Presence;
-import com.minhapresenca.minhapresencabackend.service.impl.PresenceServiceImpl;
+import com.minhapresenca.minhapresencabackend.servicesImplementations.PresenceServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/presence")
+@CrossOrigin(origins = "*")
 public class PresenceController {
   private final PresenceServiceImpl presenceService;
 

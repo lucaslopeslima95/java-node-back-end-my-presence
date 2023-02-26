@@ -1,17 +1,17 @@
 package com.minhapresenca.minhapresencabackend.controller;
 
 
-import com.minhapresenca.minhapresencabackend.entity.Log;
 import com.minhapresenca.minhapresencabackend.entity.Student;
-import com.minhapresenca.minhapresencabackend.entity.form.StudentForm;
+import com.minhapresenca.minhapresencabackend.DTO.StudentDTO;
 import com.minhapresenca.minhapresencabackend.service.LogService;
-import com.minhapresenca.minhapresencabackend.service.impl.StudentServiceImpl;
+import com.minhapresenca.minhapresencabackend.servicesImplementations.StudentServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/student")
+@CrossOrigin(origins = "*")
 public class StudentController {
   private final StudentServiceImpl studentService;
   private LogService logService;
@@ -22,9 +22,9 @@ public class StudentController {
   }
 
   @PostMapping
-  public Student save(@RequestBody StudentForm studentForm) {
-    logService.saveLogToServer(studentForm.getName(), "Usuario","Create Student");
-    return studentService.save(studentForm);
+  public Student save(@RequestBody StudentDTO studentDTO) {
+    logService.saveLogToServer(studentDTO.name(), "Usuario","Create Student");
+    return studentService.save(studentDTO);
   }
 
   @GetMapping

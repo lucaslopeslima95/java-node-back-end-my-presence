@@ -1,18 +1,14 @@
-package com.minhapresenca.minhapresencabackend.service.impl;
+package com.minhapresenca.minhapresencabackend.servicesImplementations;
 
 import com.minhapresenca.minhapresencabackend.entity.Presence;
-import com.minhapresenca.minhapresencabackend.entity.Student;
 import com.minhapresenca.minhapresencabackend.repository.PresenceRepository;
 import com.minhapresenca.minhapresencabackend.repository.StudentRepository;
 import com.minhapresenca.minhapresencabackend.service.PresenceService;
-import com.minhapresenca.minhapresencabackend.service.StudentService;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Locale;
 
 @Service
 public class PresenceServiceImpl implements PresenceService {

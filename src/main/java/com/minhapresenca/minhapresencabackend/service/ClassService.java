@@ -1,13 +1,13 @@
 package com.minhapresenca.minhapresencabackend.service;
 
 import com.minhapresenca.minhapresencabackend.entity.Class;
-import com.minhapresenca.minhapresencabackend.entity.form.ClassForm;
+import com.minhapresenca.minhapresencabackend.DTO.ClassDTO;
 
 import java.util.List;
 
 public interface ClassService {
 
-  Class create(ClassForm Class);
+  Class create(ClassDTO Class);
 
   List<Class> getAll();
 

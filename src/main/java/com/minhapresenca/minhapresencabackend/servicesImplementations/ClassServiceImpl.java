@@ -1,14 +1,12 @@
-package com.minhapresenca.minhapresencabackend.service.impl;
+package com.minhapresenca.minhapresencabackend.servicesImplementations;
 
 
 import com.minhapresenca.minhapresencabackend.entity.Class;
-import com.minhapresenca.minhapresencabackend.entity.form.ClassForm;
+import com.minhapresenca.minhapresencabackend.DTO.ClassDTO;
 import com.minhapresenca.minhapresencabackend.repository.ClassRepository;
 import com.minhapresenca.minhapresencabackend.service.ClassService;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
@@ -22,7 +20,7 @@ public class ClassServiceImpl implements ClassService {
   }
 
   @Override
-  public Class create(ClassForm aClass) {
+  public Class create(ClassDTO aClass) {
     Class aClassNew = new Class();
     aClassNew.setClassName(aClass.getClassName());
     return classRepository.save(aClassNew);

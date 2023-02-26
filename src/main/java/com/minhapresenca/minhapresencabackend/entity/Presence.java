@@ -1,6 +1,7 @@
 package com.minhapresenca.minhapresencabackend.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -14,6 +15,7 @@ import java.time.ZonedDateTime;
 @AllArgsConstructor
 @Entity
 @Table(name = "presence")
+@Builder
 public class Presence {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

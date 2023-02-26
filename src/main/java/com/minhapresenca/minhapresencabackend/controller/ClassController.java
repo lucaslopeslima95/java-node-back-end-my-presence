@@ -2,16 +2,16 @@ package com.minhapresenca.minhapresencabackend.controller;
 
 
 import com.minhapresenca.minhapresencabackend.entity.Class;
-import com.minhapresenca.minhapresencabackend.entity.Student;
-import com.minhapresenca.minhapresencabackend.entity.form.ClassForm;
-import com.minhapresenca.minhapresencabackend.service.impl.ClassServiceImpl;
-import com.minhapresenca.minhapresencabackend.service.impl.StudentServiceImpl;
+import com.minhapresenca.minhapresencabackend.DTO.ClassDTO;
+import com.minhapresenca.minhapresencabackend.servicesImplementations.ClassServiceImpl;
+import com.minhapresenca.minhapresencabackend.servicesImplementations.StudentServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/class")
+@CrossOrigin(origins = "*")
 public class ClassController {
   private final ClassServiceImpl classService;
   private final StudentServiceImpl studentService;
@@ -22,7 +22,7 @@ public class ClassController {
   }
 
   @PostMapping
-  public Class save(@RequestBody ClassForm classStudent) {
+  public Class save(@RequestBody ClassDTO classStudent) {
     return classService.create(classStudent);
   }
 
