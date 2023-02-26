@@ -3,4 +3,4 @@ package com.minhapresenca.minhapresencabackend.DTO;
 import lombok.Builder;
 
 @Builder
-public record StudentDTO(String login, String password, String name, String cpf, String neighborhood, String address, Long idClass){}
+public record StudentDTO(String email, String password, String name, String cpf, String neighborhood, String address, Long idClass){}

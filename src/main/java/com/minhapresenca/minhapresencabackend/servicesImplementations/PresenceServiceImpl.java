@@ -24,6 +24,7 @@ public class PresenceServiceImpl implements PresenceService {
   public Presence create(Long id) {
     Presence presence = new Presence();
     presence.setStudent(studentRepository.findById(id).get());
+    presence.setDate(String.valueOf(ZonedDateTime.now()));
     return presenceRepository.save(presence);
   }
   @Override

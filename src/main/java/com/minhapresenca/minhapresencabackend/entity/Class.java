@@ -22,5 +22,5 @@ public class Class {
     private Long id;
     private String className;
     @OneToMany(mappedBy = "aClass", cascade = CascadeType.REMOVE , fetch = FetchType.LAZY)
-    private List <Student> studentList = new ArrayList<>();;
+    private List <Student> studentList;
 }

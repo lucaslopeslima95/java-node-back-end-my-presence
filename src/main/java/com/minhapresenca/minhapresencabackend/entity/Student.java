@@ -32,9 +32,9 @@ public class Student{
 
   private String address;
 
-  @OneToMany(mappedBy = "student", cascade = CascadeType.REMOVE , fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "student_id", cascade = CascadeType.REMOVE , fetch = FetchType.LAZY)
   @JsonIgnore
-  private List<Presence> presences = new ArrayList<>();
+  private List<Presence> presences;
 
   @ManyToOne
   @JoinColumn(name = "class_id")

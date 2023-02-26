@@ -23,6 +23,6 @@ public class Presence {
     @ManyToOne
     @JoinColumn(name = "student")
     private Student student;
-    private String date = String.valueOf(ZonedDateTime.now());
+    private String date;
 
 }
