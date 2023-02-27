@@ -1,5 +1,6 @@
 package com.minhapresenca.minhapresencabackend.service;
 
+import com.minhapresenca.minhapresencabackend.DTO.LoginDTO;
 import com.minhapresenca.minhapresencabackend.entity.User;
 
 import java.util.List;
@@ -14,4 +15,6 @@ public interface UserService {
     User update(Long id, User user);
 
     void delete(Long id);
+
+    boolean findByEmailAndPassword(String email,String password);
 }

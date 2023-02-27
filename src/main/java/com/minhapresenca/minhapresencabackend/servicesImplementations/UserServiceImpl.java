@@ -1,5 +1,6 @@
 package com.minhapresenca.minhapresencabackend.servicesImplementations;
 
+import com.minhapresenca.minhapresencabackend.DTO.LoginDTO;
 import com.minhapresenca.minhapresencabackend.entity.User;
 import com.minhapresenca.minhapresencabackend.repository.UserRepository;
 import com.minhapresenca.minhapresencabackend.service.UserService;
@@ -9,7 +10,6 @@ import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
-
     private UserRepository userRepository;
 
     public UserServiceImpl(UserRepository userRepository) {
@@ -43,5 +43,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(Long id) {
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public boolean findByEmailAndPassword(String email,String password) {
+        return userRepository.findByEmailAndPassword( email,password);
     }
 }

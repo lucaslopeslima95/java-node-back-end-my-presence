@@ -1,39 +1,32 @@
 package com.minhapresenca.minhapresencabackend.controller;
 
 
+import com.minhapresenca.minhapresencabackend.DTO.LoginDTO;
 import com.minhapresenca.minhapresencabackend.entity.Presence;
-import com.minhapresenca.minhapresencabackend.servicesImplementations.PresenceServiceImpl;
+import com.minhapresenca.minhapresencabackend.entity.User;
+import com.minhapresenca.minhapresencabackend.servicesImplementations.UserServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/presence")
+@RequestMapping("/login")
 @CrossOrigin(origins = "*")
 public class LoginController {
-  private final PresenceServiceImpl presenceService;
+  private final UserServiceImpl userService;
 
-  public LoginController(PresenceServiceImpl presenceService) {
-    this.presenceService = presenceService;
+  public LoginController(UserServiceImpl userService) {
+    this.userService = userService;
   }
+
+
   @PostMapping
-  public Presence save(@RequestBody Long  id) {
-    return presenceService.create(id);
+  public Boolean logIn(@RequestBody LoginDTO loginDTO) {
+     Optional<Boolean> aBoolean = Optional.of(userService.findByEmailAndPassword(loginDTO.email(), loginDTO.password()));
+      if (aBoolean.isPresent()){
+        return true;
+      }
+      return false;
   }
 
-  @GetMapping
-  public List<Presence> getAll(){
-    return presenceService.getAll();
-  }
-
-  @DeleteMapping
-  public String delete(@RequestBody Long id){
-    presenceService.delete(id);
-    return "Deletado com Sucesso";
-  }
-
-  @PutMapping(path ={"/{id}"})
-  public Presence update(@RequestBody Presence presence, @PathVariable Long id) {
-  return presenceService.update(id, presence);
-  }
 }
