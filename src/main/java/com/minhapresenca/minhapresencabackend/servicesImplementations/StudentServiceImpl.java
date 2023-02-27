@@ -10,6 +10,7 @@ import com.minhapresenca.minhapresencabackend.repository.UserRepository;
 import com.minhapresenca.minhapresencabackend.service.StudentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,7 +34,7 @@ public class StudentServiceImpl implements StudentService {
     try{
       User user = User
               .builder()
-              .password(studentDTO.password())
+              .password(BCrypt.hashpw(studentDTO.password(), BCrypt.gensalt()))
               .email(studentDTO.email())
               .build();
       User userSaved = userRepository.save(user);

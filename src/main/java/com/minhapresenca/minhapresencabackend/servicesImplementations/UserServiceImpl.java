@@ -4,7 +4,6 @@ import com.minhapresenca.minhapresencabackend.entity.User;
 import com.minhapresenca.minhapresencabackend.repository.UserRepository;
 import com.minhapresenca.minhapresencabackend.service.UserService;
 import org.springframework.stereotype.Service;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,7 +18,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(User user) {
-        user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
         return userRepository.save(user);
     }
 

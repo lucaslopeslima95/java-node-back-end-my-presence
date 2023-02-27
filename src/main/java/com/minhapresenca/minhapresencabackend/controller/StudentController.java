@@ -1,8 +1,8 @@
 package com.minhapresenca.minhapresencabackend.controller;
 
 
-import com.minhapresenca.minhapresencabackend.entity.Student;
 import com.minhapresenca.minhapresencabackend.DTO.StudentDTO;
+import com.minhapresenca.minhapresencabackend.entity.Student;
 import com.minhapresenca.minhapresencabackend.service.LogService;
 import com.minhapresenca.minhapresencabackend.servicesImplementations.StudentServiceImpl;
 import org.springframework.http.HttpStatus;

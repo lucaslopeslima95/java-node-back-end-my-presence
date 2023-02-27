@@ -1,8 +1,8 @@
 package com.minhapresenca.minhapresencabackend.controller;
 
 
-import com.minhapresenca.minhapresencabackend.entity.Class;
 import com.minhapresenca.minhapresencabackend.DTO.ClassDTO;
+import com.minhapresenca.minhapresencabackend.entity.Class;
 import com.minhapresenca.minhapresencabackend.servicesImplementations.ClassServiceImpl;
 import com.minhapresenca.minhapresencabackend.servicesImplementations.StudentServiceImpl;
 import org.springframework.web.bind.annotation.*;

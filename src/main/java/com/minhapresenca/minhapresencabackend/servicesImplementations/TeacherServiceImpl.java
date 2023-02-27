@@ -5,10 +5,10 @@ import com.minhapresenca.minhapresencabackend.entity.Teacher;
 import com.minhapresenca.minhapresencabackend.DTO.TeacherDTO;
 import com.minhapresenca.minhapresencabackend.entity.User;
 import com.minhapresenca.minhapresencabackend.repository.TeacherRepository;
-import com.minhapresenca.minhapresencabackend.repository.UserRepository;
 import com.minhapresenca.minhapresencabackend.service.TeacherService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,10 +19,11 @@ import java.util.Optional;
 public class TeacherServiceImpl implements TeacherService {
 
   private TeacherRepository teacherRepository;
-  private UserRepository userRepository;
+  private UserServiceImpl userService;
 
-  public TeacherServiceImpl(TeacherRepository teacherRepository) {
+  public TeacherServiceImpl(TeacherRepository teacherRepository, UserServiceImpl userService) {
     this.teacherRepository = teacherRepository;
+    this.userService = userService;
   }
 
   public ResponseEntity<Teacher> save(TeacherDTO teacherDTO) {
@@ -30,14 +31,15 @@ public class TeacherServiceImpl implements TeacherService {
     try {
       User user = User
               .builder()
-              .password(teacherDTO.password())
+              .password(BCrypt.hashpw(teacherDTO.password(), BCrypt.gensalt()))
               .email(teacherDTO.email())
               .build();
-      User userSaved = userRepository.save(user);
+      User userSaved = userService.save(user);
       teacher = Teacher.builder()
               .name(teacherDTO.name())
               .subject(teacherDTO.name())
               .user(userSaved)
+              .classList(teacherDTO.classList())
               .build();
     } catch (UserAlreadyExistsException ex) {
       return ResponseEntity.status(HttpStatus.CONFLICT).build();
