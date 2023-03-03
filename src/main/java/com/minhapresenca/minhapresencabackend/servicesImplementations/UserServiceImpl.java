@@ -1,9 +1,10 @@
 package com.minhapresenca.minhapresencabackend.servicesImplementations;
 
-import com.minhapresenca.minhapresencabackend.DTO.LoginDTO;
+
 import com.minhapresenca.minhapresencabackend.entity.User;
 import com.minhapresenca.minhapresencabackend.repository.UserRepository;
 import com.minhapresenca.minhapresencabackend.service.UserService;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -48,5 +49,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean findByEmailAndPassword(String email,String password) {
         return userRepository.findByEmailAndPassword( email,password);
+    }
+    public User buildUser(String email,String password){
+        User user = User
+                .builder()
+                .password(BCrypt.hashpw(password, BCrypt.gensalt()))
+                .email(email)
+                .build();
+        return save(user);
     }
 }

@@ -6,11 +6,9 @@ import com.minhapresenca.minhapresencabackend.DTO.StudentDTO;
 import com.minhapresenca.minhapresencabackend.entity.User;
 import com.minhapresenca.minhapresencabackend.repository.ClassRepository;
 import com.minhapresenca.minhapresencabackend.repository.StudentRepository;
-import com.minhapresenca.minhapresencabackend.repository.UserRepository;
 import com.minhapresenca.minhapresencabackend.service.StudentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,22 +20,17 @@ public class StudentServiceImpl implements StudentService {
 
   private final StudentRepository studentRepository;
   private final ClassRepository classRepository;
-  private final UserRepository userRepository;
+  private final UserServiceImpl userService;
 
-  public StudentServiceImpl(StudentRepository studentRepository, ClassRepository classRepository, UserRepository userRepository) {
+  public StudentServiceImpl(StudentRepository studentRepository, ClassRepository classRepository, UserServiceImpl userService) {
     this.studentRepository = studentRepository;
     this.classRepository = classRepository;
-    this.userRepository = userRepository;
+    this.userService = userService;
   }
   public ResponseEntity<Student> save(StudentDTO studentDTO) {
     Student student;
     try{
-      User user = User
-              .builder()
-              .password(BCrypt.hashpw(studentDTO.password(), BCrypt.gensalt()))
-              .email(studentDTO.email())
-              .build();
-      User userSaved = userRepository.save(user);
+      User userSaved = userService.buildUser(studentDTO.email(),studentDTO.password());
        student = Student
               .builder()
                .user(userSaved)

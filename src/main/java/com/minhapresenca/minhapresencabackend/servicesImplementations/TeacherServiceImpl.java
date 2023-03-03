@@ -29,12 +29,7 @@ public class TeacherServiceImpl implements TeacherService {
   public ResponseEntity<Teacher> save(TeacherDTO teacherDTO) {
     Teacher teacher;
     try {
-      User user = User
-              .builder()
-              .password(BCrypt.hashpw(teacherDTO.password(), BCrypt.gensalt()))
-              .email(teacherDTO.email())
-              .build();
-      User userSaved = userService.save(user);
+      User userSaved = userService.buildUser(teacherDTO.email(),teacherDTO.password());
       teacher = Teacher.builder()
               .name(teacherDTO.name())
               .subject(teacherDTO.name())

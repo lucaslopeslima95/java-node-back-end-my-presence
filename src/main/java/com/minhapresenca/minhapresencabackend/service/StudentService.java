@@ -15,6 +15,6 @@ public interface StudentService {
 
   Student update(Long id, StudentDTO studentDTO);
 
-  public ResponseEntity<Void> delete(Long id);
+  ResponseEntity<Void> delete(Long id);
 
 }
