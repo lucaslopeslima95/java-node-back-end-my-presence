@@ -1,14 +1,18 @@
 package com.minhapresenca.minhapresencabackend.servicesImplementations;
 
+import com.minhapresenca.minhapresencabackend.View.PresenceView;
 import com.minhapresenca.minhapresencabackend.entity.Presence;
 import com.minhapresenca.minhapresencabackend.repository.PresenceRepository;
 import com.minhapresenca.minhapresencabackend.repository.StudentRepository;
 import com.minhapresenca.minhapresencabackend.service.PresenceService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class PresenceServiceImpl implements PresenceService {
@@ -21,20 +25,20 @@ public class PresenceServiceImpl implements PresenceService {
     this.studentRepository = studentRepository;
   }
   @Override
-  public Presence create(Long id) {
-    Presence presence = new Presence();
-    presence.setStudent(studentRepository.findById(id).get());
-    presence.setDate(String.valueOf(ZonedDateTime.now()));
+  public Presence save(Long id) {
+    Presence presence = Presence.builder()
+            .student(studentRepository.findById(id).get())
+            .date(String.valueOf(ZonedDateTime.now()))
+            .build();
     return presenceRepository.save(presence);
   }
   @Override
-  public List<Presence> getAll() {
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-    List<Presence> presences = presenceRepository.findAll();
+  public List<Presence> findByStudentId(long id){
+    List<Presence> presences = presenceRepository.findByStudentId(id);
     for (Presence presence : presences) {
       ZonedDateTime date = ZonedDateTime.parse(presence.getDate());
       if (date != null) {
-        String formattedDate = date.format(formatter);
+        String formattedDate = date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
         presence.setDate(formattedDate);
       }
     }
@@ -42,16 +46,17 @@ public class PresenceServiceImpl implements PresenceService {
   }
 
   @Override
-  public void delete(Long id) {
+  public ResponseEntity<Void> delete(Long id) {
+    try {
       presenceRepository.deleteById(id);
+      return ResponseEntity.ok().build();
+    } catch (NoSuchElementException e) {
+      return ResponseEntity.notFound().build();
+    } catch (Exception e) {
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
   }
 
-  @Override
-  public Presence update(Long id, Presence presenceUp) {
-        Presence presence  = presenceRepository.findById(id).get();
-        presence.setStudent(presenceUp.getStudent());
-        presence.setDate(presenceUp.getDate());
-    return presenceRepository.saveAndFlush(presence);
-  }
+
 
 }

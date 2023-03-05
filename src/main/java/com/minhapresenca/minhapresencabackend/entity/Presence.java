@@ -21,7 +21,7 @@ public class Presence {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_presence;
     @ManyToOne
-    @JoinColumn(name = "presences")
+    @JoinColumn(name = "id_student")
     private Student student;
     private String date;
 

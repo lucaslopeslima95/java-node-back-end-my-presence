@@ -2,17 +2,17 @@ package com.minhapresenca.minhapresencabackend.service;
 
 
 import com.minhapresenca.minhapresencabackend.entity.Presence;
-import com.minhapresenca.minhapresencabackend.entity.Student;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
 public interface PresenceService {
 
-  Presence create(Long id);
+  Presence save(Long id);
 
-  List<Presence> getAll();
+  List<Presence> findByStudentId(long id);
 
-  void delete(Long id);
+  ResponseEntity<Void> delete(Long id);
 
-  Presence update(Long id,Presence presence);
+
 }
