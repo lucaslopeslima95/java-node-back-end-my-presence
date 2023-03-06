@@ -6,4 +6,4 @@ import lombok.Builder;
 import java.util.List;
 
 @Builder
-public record PresenceView(String nomeAluno,List<Presence> presenceList) {}
+public record PresenceView(String nameAluno, List<Presence> presenceList) {}

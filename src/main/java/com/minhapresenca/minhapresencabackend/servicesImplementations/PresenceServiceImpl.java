@@ -13,6 +13,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @Service
 public class PresenceServiceImpl implements PresenceService {
@@ -33,15 +34,18 @@ public class PresenceServiceImpl implements PresenceService {
     return presenceRepository.save(presence);
   }
   @Override
-  public List<Presence> findByStudentId(long id){
-    List<Presence> presences = presenceRepository.findByStudentId(id);
-    for (Presence presence : presences) {
-      ZonedDateTime date = ZonedDateTime.parse(presence.getDate());
-      if (date != null) {
-        String formattedDate = date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
-        presence.setDate(formattedDate);
-      }
-    }
+  public PresenceView findByStudentId(long id){
+    PresenceView presences = presenceRepository.findByStudentId(id);
+    presences.presenceList().stream()
+            .map(presence -> {
+              ZonedDateTime date = ZonedDateTime.parse(presence.getDate());
+              if (date != null) {
+                String formattedDate = date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+                presence.setDate(formattedDate);
+              }
+              return presence;
+            })
+            .collect(Collectors.toList());
     return presences;
   }
 

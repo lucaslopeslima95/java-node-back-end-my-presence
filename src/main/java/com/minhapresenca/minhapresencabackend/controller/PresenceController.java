@@ -1,6 +1,7 @@
 package com.minhapresenca.minhapresencabackend.controller;
 
 
+import com.minhapresenca.minhapresencabackend.View.PresenceView;
 import com.minhapresenca.minhapresencabackend.entity.Presence;
 import com.minhapresenca.minhapresencabackend.servicesImplementations.PresenceServiceImpl;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class PresenceController {
   }
 
   @GetMapping("/getpresences/{id}")
-  public List<Presence> getPresencesStudent(@PathVariable Long id){
+  public PresenceView getPresencesStudent(@PathVariable Long id){
     return presenceService.findByStudentId(id);
   }
 

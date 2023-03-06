@@ -25,7 +25,7 @@ public class StudentController {
   }
 
   @PostMapping
-  public ResponseEntity<Student> save(@Valid @RequestBody StudentDTO studentDTO) {
+  public ResponseEntity<Student> save(@RequestBody StudentDTO studentDTO) {
     logService.saveLogToServer(studentDTO.name(), "Usuario","Create Student");
     return studentService.save(studentDTO);
   }
