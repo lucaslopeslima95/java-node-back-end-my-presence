@@ -56,6 +56,7 @@ public class UserServiceImpl implements UserService {
                 .password(BCrypt.hashpw(password, BCrypt.gensalt()))
                 .email(email)
                 .build();
-        return save(user);
+        User userSaved = this.save(user);
+        return userSaved;
     }
 }

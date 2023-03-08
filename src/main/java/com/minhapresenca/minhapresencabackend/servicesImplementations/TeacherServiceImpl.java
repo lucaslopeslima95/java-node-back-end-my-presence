@@ -32,7 +32,7 @@ public class TeacherServiceImpl implements TeacherService {
       User userSaved = userService.buildUser(teacherDTO.email(),teacherDTO.password());
       teacher = Teacher.builder()
               .name(teacherDTO.name())
-              .subject(teacherDTO.name())
+              .subject(teacherDTO.subject())
               .user(userSaved)
               .classList(teacherDTO.classList())
               .build();

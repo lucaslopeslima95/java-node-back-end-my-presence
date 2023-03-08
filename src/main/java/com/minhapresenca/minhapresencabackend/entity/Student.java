@@ -26,7 +26,7 @@ public class Student{
   private long id_Student;
   private String name;
 
-  @Column(unique = true)
+ // @Column(unique = true)
   private String cpf;
 
   private String neighborhood;

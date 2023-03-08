@@ -18,18 +18,16 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class ClassController {
   private final ClassServiceImpl classService;
-  private final StudentServiceImpl studentService;
   private final LogService logService;
 
   public ClassController(ClassServiceImpl classService, StudentServiceImpl studentService, LogService logService) {
     this.classService = classService;
-    this.studentService = studentService;
     this.logService = logService;
   }
 
   @PostMapping
-  public ResponseEntity<Class> save(@Valid @RequestBody ClassDTO classDTO) {
-      logService.saveLogToServer(classDTO.className(), "Class","create class");
+  public ResponseEntity<Class> save(@RequestBody ClassDTO classDTO) {
+      //logService.saveLogToServer(classDTO.className(), "Class","create class");
     return classService.save(classDTO);
   }
 

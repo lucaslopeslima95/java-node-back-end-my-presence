@@ -31,7 +31,6 @@ public class StudentServiceImpl implements StudentService {
     Student student;
     try{
       User userSaved = userService.buildUser(studentDTO.email(),studentDTO.password());
-
        student = Student
               .builder()
                .user(userSaved)
@@ -41,7 +40,6 @@ public class StudentServiceImpl implements StudentService {
               .neighborhood(studentDTO.neighborhood())
               .aClass(classRepository.findById(studentDTO.idClass()).get())
               .build();
-      System.out.println("student "+student);
 
     } catch (UserAlreadyExistsException ex) {
     return ResponseEntity.status(HttpStatus.CONFLICT).build();
