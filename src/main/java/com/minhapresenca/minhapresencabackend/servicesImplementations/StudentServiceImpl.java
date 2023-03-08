@@ -30,7 +30,7 @@ public class StudentServiceImpl implements StudentService {
   public ResponseEntity<Student> save(StudentDTO studentDTO) {
     Student student;
     try{
-      User userSaved = userService.buildUser(studentDTO.email(),studentDTO.password());
+       User userSaved = userService.buildUser(studentDTO.email(),studentDTO.password());
        student = Student
               .builder()
                .user(userSaved)
