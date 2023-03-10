@@ -8,10 +8,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
 public interface PresenceRepository extends JpaRepository<Presence, Long> {
-    @Query("select p from Presence p where p.student.id_Student= :id")
-    PresenceView findByStudentId(long id);
+    @Query("select p.date from Presence p where p.student.id_Student= :id")
+    List<String> findDatesByStudentId(long id);
+
 }

@@ -12,7 +12,7 @@ public interface ClassService {
 
   List<Class> getAll();
 
-  Class update(Long id, Class studentClass);
+  Class update(Long id, ClassDTO classDTO);
 
   ResponseEntity<Void> delete(Long id);
 }

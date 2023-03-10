@@ -1,5 +1,6 @@
 package com.minhapresenca.minhapresencabackend.servicesImplementations;
 
+import com.minhapresenca.minhapresencabackend.Exception.ClassNotExistsException;
 import com.minhapresenca.minhapresencabackend.Exception.UserAlreadyExistsException;
 import com.minhapresenca.minhapresencabackend.entity.Student;
 import com.minhapresenca.minhapresencabackend.DTO.StudentDTO;
@@ -40,10 +41,12 @@ public class StudentServiceImpl implements StudentService {
               .neighborhood(studentDTO.neighborhood())
               .aClass(classRepository.findById(studentDTO.idClass()).get())
               .build();
-
     } catch (UserAlreadyExistsException ex) {
     return ResponseEntity.status(HttpStatus.CONFLICT).build();
-  } catch (Exception ex) {
+    }catch (ClassNotExistsException e){
+      return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).build();
+    }
+    catch (Exception ex) {
     return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
   }
     return new ResponseEntity<>(studentRepository.save(student), HttpStatus.CREATED);

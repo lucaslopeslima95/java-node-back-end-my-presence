@@ -2,6 +2,7 @@ package com.minhapresenca.minhapresencabackend.servicesImplementations;
 
 import com.minhapresenca.minhapresencabackend.View.PresenceView;
 import com.minhapresenca.minhapresencabackend.entity.Presence;
+import com.minhapresenca.minhapresencabackend.entity.Student;
 import com.minhapresenca.minhapresencabackend.repository.PresenceRepository;
 import com.minhapresenca.minhapresencabackend.repository.StudentRepository;
 import com.minhapresenca.minhapresencabackend.service.PresenceService;
@@ -9,8 +10,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
@@ -27,26 +31,19 @@ public class PresenceServiceImpl implements PresenceService {
   }
   @Override
   public Presence save(Long id) {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+    String formattedDateTime = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")).format(formatter);
+
     Presence presence = Presence.builder()
             .student(studentRepository.findById(id).get())
-            .date(String.valueOf(ZonedDateTime.now()))
+            .date(formattedDateTime)
             .build();
     return presenceRepository.save(presence);
   }
   @Override
-  public PresenceView findByStudentId(long id){
-    PresenceView presences = presenceRepository.findByStudentId(id);
-    presences.presenceList().stream()
-            .map(presence -> {
-              ZonedDateTime date = ZonedDateTime.parse(presence.getDate());
-              if (date != null) {
-                String formattedDate = date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
-                presence.setDate(formattedDate);
-              }
-              return presence;
-            })
-            .collect(Collectors.toList());
-    return presences;
+  public List <String> findByStudentId(long id){
+    List <String> dates = presenceRepository.findDatesByStudentId(id);
+    return dates;
   }
 
   @Override

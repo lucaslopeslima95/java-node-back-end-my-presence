@@ -7,6 +7,7 @@ import com.minhapresenca.minhapresencabackend.servicesImplementations.PresenceSe
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -18,18 +19,19 @@ public class PresenceController {
   public PresenceController(PresenceServiceImpl presenceService) {
     this.presenceService = presenceService;
   }
+
   @PostMapping("/{id}")
   public Presence save(@PathVariable Long  id) {
     return presenceService.save(id);
   }
 
   @GetMapping("/getpresences/{id}")
-  public PresenceView getPresencesStudent(@PathVariable Long id){
+  public List <String> getPresencesStudent(@PathVariable Long id){
     return presenceService.findByStudentId(id);
   }
 
-  @DeleteMapping
-  public ResponseEntity<Void> delete(@RequestBody Long id){
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Void> delete(@PathVariable Long id){
     return presenceService.delete(id);
   }
 }
