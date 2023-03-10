@@ -34,7 +34,6 @@ public class TeacherServiceImpl implements TeacherService {
               .name(teacherDTO.name())
               .subject(teacherDTO.subject())
               .user(userSaved)
-              .classList(teacherDTO.classList())
               .build();
     } catch (UserAlreadyExistsException ex) {
       return ResponseEntity.status(HttpStatus.CONFLICT).build();
@@ -54,6 +53,7 @@ public class TeacherServiceImpl implements TeacherService {
     if (id == null || teacherDTO == null) {
       throw new IllegalArgumentException("ID e User não podem ser nulos");
     }
+    //fazer a atualização de usuario com professor e aluno
     Optional<Teacher> optionalTeacher = teacherRepository.findById(id);
     if (optionalTeacher.isPresent()) {
       Teacher teacher = optionalTeacher.get();

@@ -5,4 +5,4 @@ import lombok.Builder;
 import java.util.Set;
 
 @Builder
-public record TeacherDTO(String email, String password, String name, String subject, Set<Class> classList){}
+public record TeacherDTO(String email, String password, String name, String subject){}

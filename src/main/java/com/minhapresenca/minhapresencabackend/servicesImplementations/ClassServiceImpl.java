@@ -43,15 +43,14 @@ public class ClassServiceImpl implements ClassService {
   }
 
   @Override
-  public Class update(Long id, Class classUp) {
+  public Class update(Long id, ClassDTO classUp) {
     if (id == null || classUp == null) {
       throw new IllegalArgumentException("ID e User não podem ser nulos");
     }
     Optional<Class> optionalClass = classRepository.findById(id);
     if(optionalClass.isPresent()) {
       Class aClass = classRepository.findById(id).get();
-      aClass.setClassName(classUp.getClassName());
-      aClass.setStudentList(classUp.getStudentList());
+      aClass.setClassName(classUp.className());
       return classRepository.saveAndFlush(aClass);
     }
     return optionalClass.orElse(null);

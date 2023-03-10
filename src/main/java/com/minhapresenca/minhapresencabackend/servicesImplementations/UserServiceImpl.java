@@ -28,15 +28,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User update(Long id, User userUp) {
-        if (id == null || userUp == null) {
-            throw new IllegalArgumentException("ID e User não podem ser nulos");
-        }
+    public User update(Long id,String email,String password) {
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            user.setPassword(userUp.getPassword());
-            user.setEmail(userUp.getEmail());
+            user.setPassword(password);
+            user.setEmail(email);
             return userRepository.saveAndFlush(user);
         }
         return optionalUser.orElse(null);

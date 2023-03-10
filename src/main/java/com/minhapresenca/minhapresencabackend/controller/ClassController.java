@@ -42,7 +42,7 @@ public class ClassController {
   }
 
   @PutMapping(path ={"/{id}"})
-  public ResponseEntity<Class> update(@RequestBody Class aClass, @PathVariable Long id) {
+  public ResponseEntity<Class> update(@RequestBody ClassDTO aClass, @PathVariable Long id) {
   return new ResponseEntity<>(classService.update(id, aClass), HttpStatus.ACCEPTED);
   }
 
