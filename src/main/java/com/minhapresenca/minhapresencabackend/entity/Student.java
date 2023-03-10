@@ -45,5 +45,6 @@ public class Student{
 
   @OneToOne
   @JoinColumn(name = "user_id")
+  @JsonBackReference
   private User user;
 }

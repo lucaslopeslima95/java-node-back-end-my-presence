@@ -1,6 +1,5 @@
 package com.minhapresenca.minhapresencabackend.service;
 
-import com.minhapresenca.minhapresencabackend.DTO.LoginDTO;
 import com.minhapresenca.minhapresencabackend.entity.User;
 
 import java.util.List;
