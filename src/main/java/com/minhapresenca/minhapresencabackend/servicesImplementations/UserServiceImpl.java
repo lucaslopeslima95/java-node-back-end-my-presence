@@ -44,9 +44,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean findByEmailAndPassword(String email,String password) {
-        return userRepository.findByEmailAndPassword( email,password);
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
+
+
     public User buildUser(String email,String password){
         User user = User
                 .builder()
@@ -55,5 +57,8 @@ public class UserServiceImpl implements UserService {
                 .build();
         User userSaved = this.save(user);
         return userSaved;
+    }
+    public User findById(Long id){
+        return userRepository.findById(id).get();
     }
 }
