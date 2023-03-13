@@ -23,7 +23,6 @@ public class UserController {
   @PostMapping
   public ResponseEntity<Boolean> logIn(@RequestBody UserDTO userDTO) {
      User user = userService.findByEmail(userDTO.email());
-
       if (BCrypt.checkpw(userDTO.password(), user.getPassword())){
         return ResponseEntity.ok().build();
       }
