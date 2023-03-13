@@ -58,6 +58,7 @@ public class StudentServiceImpl implements StudentService {
 
   @Override
   public Student update(Long id, StudentDTO studentDTO) {
+    long id_user = 0;
     if(id == null ||  studentDTO == null){
             throw  new IllegalArgumentException("Id and user cant is null");
     }
@@ -68,7 +69,8 @@ public class StudentServiceImpl implements StudentService {
       student.setName(studentDTO.name());
       student.setNeighborhood(studentDTO.neighborhood());
 
-      userService.update(optionalStudent.get().getUser().getId(), studentDTO.email(), studentDTO.password());
+      id_user = optionalStudent.get().getUser().getId();
+      userService.update(id_user, studentDTO.email(), studentDTO.password());
       return studentRepository.saveAndFlush(student);
     }
     return optionalStudent.orElse(null);

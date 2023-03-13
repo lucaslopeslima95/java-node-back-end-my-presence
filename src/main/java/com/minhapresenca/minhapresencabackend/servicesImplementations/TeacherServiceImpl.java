@@ -50,6 +50,7 @@ public class TeacherServiceImpl implements TeacherService {
 
   @Override
   public Teacher update(Long id, TeacherDTO teacherDTO) {
+    long id_user = 0;
     if (id == null || teacherDTO == null) {
       throw new IllegalArgumentException("ID e User não podem ser nulos");
     }
@@ -58,7 +59,8 @@ public class TeacherServiceImpl implements TeacherService {
       Teacher teacher = optionalTeacher.get();
       teacher.setName(teacherDTO.name());
       teacher.setSubject(teacherDTO.subject());
-      userService.update(optionalTeacher.get().getUser().getId(), teacherDTO.email(), teacherDTO.password());
+      id_user = optionalTeacher.get().getUser().getId();
+      userService.update(id_user, teacherDTO.email(), teacherDTO.password());
       return teacherRepository.saveAndFlush(teacher);
     }
     return optionalTeacher.orElse(null);

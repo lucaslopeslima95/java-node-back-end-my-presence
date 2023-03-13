@@ -68,5 +68,11 @@ public class ClassServiceImpl implements ClassService {
     }
   }
 
+  @Override
+  public List<Class> listClassByTeacherId(Long id) {
+
+    return classRepository.listClassByTeacherId(id);
+  }
+
 
 }

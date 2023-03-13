@@ -15,4 +15,6 @@ public interface ClassService {
   Class update(Long id, ClassDTO classDTO);
 
   ResponseEntity<Void> delete(Long id);
+
+  List<Class> listClassByTeacherId(Long id);
 }

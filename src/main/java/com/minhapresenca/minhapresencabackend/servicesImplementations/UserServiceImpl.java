@@ -59,8 +59,4 @@ public class UserServiceImpl implements UserService {
         User userSaved = this.save(user);
         return userSaved;
     }
-
-    public User findById(Long id){
-        return userRepository.findById(id).get();
-    }
 }

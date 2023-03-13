@@ -20,7 +20,7 @@ public class ClassController {
   private final ClassServiceImpl classService;
   private final LogService logService;
 
-  public ClassController(ClassServiceImpl classService, StudentServiceImpl studentService, LogService logService) {
+  public ClassController(ClassServiceImpl classService, LogService logService) {
     this.classService = classService;
     this.logService = logService;
   }
@@ -44,6 +44,8 @@ public class ClassController {
   public ResponseEntity<Class> update(@RequestBody ClassDTO aClass, @PathVariable Long id) {
   return new ResponseEntity<>(classService.update(id, aClass), HttpStatus.ACCEPTED);
   }
-
-
+  @GetMapping("/list-class-by-id-teacher/{id}")
+  public ResponseEntity<List<Class>> listClassByTeacherId(@PathVariable Long id){
+    return new ResponseEntity<>(classService.listClassByTeacherId(id),HttpStatus.ACCEPTED);
+  }
 }
