@@ -1,13 +1,9 @@
 package com.minhapresenca.minhapresencabackend.controller;
 
-
-import com.minhapresenca.minhapresencabackend.View.PresenceView;
 import com.minhapresenca.minhapresencabackend.entity.Presence;
 import com.minhapresenca.minhapresencabackend.servicesImplementations.PresenceServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -20,17 +16,17 @@ public class PresenceController {
     this.presenceService = presenceService;
   }
 
-  @PostMapping("/{id}")
+  @PostMapping("/save-presence/{id}")
   public Presence save(@PathVariable Long  id) {
     return presenceService.save(id);
   }
 
-  @GetMapping("/getpresences/{id}")
+  @GetMapping("/seach-presences-by-student-id/{id}")
   public List <String> getPresencesStudent(@PathVariable Long id){
     return presenceService.findByStudentId(id);
   }
 
-  @DeleteMapping("/{id}")
+  @DeleteMapping("/delete-presence/{id}")
   public ResponseEntity<Void> delete(@PathVariable Long id){
     return presenceService.delete(id);
   }

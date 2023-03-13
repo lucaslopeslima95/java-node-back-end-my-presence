@@ -21,22 +21,22 @@ public class TeacherController {
     this.teacherService = teacherService;
   }
 
-  @PostMapping
+  @PostMapping("/save")
   public ResponseEntity<Teacher> save(@Valid @RequestBody TeacherDTO teacherDTO) {
     return teacherService.save(teacherDTO);
   }
 
-  @GetMapping
+  @GetMapping("/list-all")
   public List<Teacher> getAll(){
     return teacherService.getAll();
   }
 
-  @DeleteMapping("/{id}")
+  @DeleteMapping("/delete-teacher/{id}")
   public ResponseEntity<Void> delete(@PathVariable Long id) {
     return teacherService.delete(id);
   }
 
-  @PutMapping(path ={"/{id}"})
+  @PutMapping(path ={"/update/teacher{id}"})
   public ResponseEntity<Teacher> update(@RequestBody TeacherDTO teacherDTO, @PathVariable Long id) {
     return  new ResponseEntity<>(teacherService.update(id, teacherDTO), HttpStatus.ACCEPTED);
   }

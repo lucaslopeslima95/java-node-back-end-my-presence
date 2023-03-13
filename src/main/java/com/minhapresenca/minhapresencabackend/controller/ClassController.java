@@ -25,23 +25,22 @@ public class ClassController {
     this.logService = logService;
   }
 
-  @PostMapping
+  @PostMapping("/save-class")
   public ResponseEntity<Class> save(@RequestBody ClassDTO classDTO) {
-      //logService.saveLogToServer(classDTO.className(), "Class","create class");
     return classService.save(classDTO);
   }
 
-  @GetMapping
+  @GetMapping("/list-all-class")
   public List<Class> getAll(){
     return classService.getAll();
   }
 
-  @DeleteMapping(path ={"/{id}"})
+  @DeleteMapping(path ={"/delete/{id}"})
   public ResponseEntity<Void> delete(@PathVariable Long id){
     return classService.delete(id);
   }
 
-  @PutMapping(path ={"/{id}"})
+  @PutMapping(path ={"/update/{id}"})
   public ResponseEntity<Class> update(@RequestBody ClassDTO aClass, @PathVariable Long id) {
   return new ResponseEntity<>(classService.update(id, aClass), HttpStatus.ACCEPTED);
   }
