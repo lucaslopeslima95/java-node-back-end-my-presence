@@ -53,12 +53,12 @@ public class TeacherServiceImpl implements TeacherService {
     if (id == null || teacherDTO == null) {
       throw new IllegalArgumentException("ID e User não podem ser nulos");
     }
-    //fazer a atualização de usuario com professor e aluno
     Optional<Teacher> optionalTeacher = teacherRepository.findById(id);
     if (optionalTeacher.isPresent()) {
       Teacher teacher = optionalTeacher.get();
       teacher.setName(teacherDTO.name());
       teacher.setSubject(teacherDTO.subject());
+      userService.update(optionalTeacher.get().getUser().getId(), teacherDTO.email(), teacherDTO.password());
       return teacherRepository.saveAndFlush(teacher);
     }
     return optionalTeacher.orElse(null);

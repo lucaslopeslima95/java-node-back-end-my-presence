@@ -62,12 +62,13 @@ public class StudentServiceImpl implements StudentService {
             throw  new IllegalArgumentException("Id and user cant is null");
     }
     Optional<Student> optionalStudent = studentRepository.findById(id);
-    Optional<User> user = userService.fin
+
     if (optionalStudent.isPresent()){
       Student student = optionalStudent.get();
       student.setName(studentDTO.name());
       student.setNeighborhood(studentDTO.neighborhood());
 
+      userService.update(optionalStudent.get().getUser().getId(), studentDTO.email(), studentDTO.password());
       return studentRepository.saveAndFlush(student);
     }
     return optionalStudent.orElse(null);

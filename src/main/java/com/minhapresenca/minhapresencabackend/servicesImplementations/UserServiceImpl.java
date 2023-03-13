@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            user.setPassword(password);
+            user.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
             user.setEmail(email);
             return userRepository.saveAndFlush(user);
         }
@@ -58,6 +58,7 @@ public class UserServiceImpl implements UserService {
         User userSaved = this.save(user);
         return userSaved;
     }
+
     public User findById(Long id){
         return userRepository.findById(id).get();
     }
