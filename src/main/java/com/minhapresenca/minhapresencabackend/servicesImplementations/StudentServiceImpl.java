@@ -84,4 +84,9 @@ public class StudentServiceImpl implements StudentService {
         return  ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
       }
   }
+
+  @Override
+  public List<Student> findByClassId(Long id) {
+    return studentRepository.findStudentsByIdClass(id);
+  }
 }

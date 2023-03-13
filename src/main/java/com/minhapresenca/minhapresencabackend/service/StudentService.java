@@ -17,4 +17,6 @@ public interface StudentService {
 
   ResponseEntity<Void> delete(Long id);
 
+  List<Student> findByClassId(Long id);
+
 }

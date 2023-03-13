@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
         }
         return optionalUser.orElse(null);
     }
-    
+
     @Override
     public void delete(Long id) {
         userRepository.deleteById(id);

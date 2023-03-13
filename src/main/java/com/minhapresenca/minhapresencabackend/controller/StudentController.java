@@ -43,4 +43,9 @@ public class StudentController {
   public ResponseEntity<Student> update(@RequestBody StudentDTO studentDTO, @PathVariable Long id) {
   return new ResponseEntity<>(studentService.update(id, studentDTO), HttpStatus.ACCEPTED);
   }
+
+  @GetMapping("/{id_class}")
+  public ResponseEntity<List<Student>> findByIdClass(@PathVariable Long id_class){
+    return new ResponseEntity<>(studentService.findByClassId(id_class),HttpStatus.ACCEPTED);
+  }
 }
